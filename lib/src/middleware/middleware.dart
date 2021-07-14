@@ -24,11 +24,8 @@ class AppMiddleware {
     next(action);
     try {
       final Location location = await _locationApi.getLocation();
-      print(location);
       store.dispatch(GetLocationSuccessful(location));
-      print('aici2');
       store.dispatch(GetWeather(location));
-      print('aici3');
     } catch (error) {
       store.dispatch(GetLocationError(error));
     }
@@ -39,7 +36,6 @@ class AppMiddleware {
     try {
       final Weather weather = await _weatherApi.getWeather(action.location);
       store.dispatch(GetWeatherSuccessful(weather));
-      print('getWeatherSuccessful');
     } catch (error) {
       store.dispatch(GetWeatherError(error));
     }

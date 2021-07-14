@@ -16,8 +16,6 @@ class LocationApi {
       throw StateError(response.body);
     }
 
-    print(jsonDecode(response.body));
-
     return Location.fromJson(jsonDecode(response.body));
   }
 }

@@ -4,20 +4,18 @@ import 'package:weatherappp/src/containers/weather_container.dart';
 import 'package:weatherappp/src/models/location.dart';
 import 'package:weatherappp/src/models/weather.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+  
   @override
   Widget build(BuildContext context) {
     return LocationContainer(builder: (BuildContext context, Location? location) {
       return WeatherContainer(builder: (BuildContext context, Weather? weather) {
         if (weather == null || location == null) {
-          return const CircularProgressIndicator(backgroundColor: Colors.white);
+          return Container(
+              height: 300,
+              child: const CircularProgressIndicator(backgroundColor: Colors.white)
+          );
         }
 
         return Scaffold(
@@ -49,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Text(
-                      '${weather.temperature.round()} °C',
+                      '${(weather.temperature - 275.15).round()} °C',
                       style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -60,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                       height: MediaQuery.of(context).size.height * 0.3,
                     ),
                     Text(
-                      'Feels like: ${weather.feelsLike.round()} °C',
+                      'Feels like: ${(weather.feelsLike - 275.15).round()} °C',
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,

@@ -22,7 +22,7 @@ class WeatherApi {
     if (response.statusCode >= 300) {
       throw StateError(response.body);
     }
-    print(jsonDecode(response.body)['current']);
+
     return Weather.fromJson(jsonDecode(response.body)['current']);
   }
 }
